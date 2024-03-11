@@ -26,8 +26,7 @@ const result = await token.transfer({
     index: 2,
     recipent: "0x02EAc949Fad1b4d196601A6F4B8109f289581b3A"
 })
-// const result = await token.getBalance("0x17Ab0949bdEa6f05025aA5369Ab93dAb8Cf454bE", ["0x6D2B5c68F1506d4dCB49320D7D9Cc7e8375aC1d0"])
-// const result = token.root.deriveChild(2)
+
 console.log("result: ", result)
 })()
 

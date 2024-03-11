@@ -32,7 +32,7 @@ export default class EVM {
         const { privateKey, address } = Wallet.fromMnemonic(this.phrase, `${this.path}/${index}`)
     
         return { address, privateKey };
-      }
+    }
 
     private getContract(address: string, abi: any, private_key?: string){
         const signer = new Wallet(private_key, this.alchemy)
