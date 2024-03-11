@@ -5,6 +5,9 @@ export const NODE_ENV = process.env.NODE_ENV;
 export const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
 export const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
+export const BITCOIN_MNEMONIC = process.env.BITCOIN_MNEMONIC;
+export const EVM_MNEMONIC = process.env.EVM_MNEMONIC;
+
 export const ERC20_ABI = [
   {
       "constant": true,

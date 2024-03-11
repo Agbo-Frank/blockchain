@@ -1,12 +1,12 @@
 import { Alchemy, BigNumber, Network, Utils, Wallet, Contract, TransactionRequest } from "alchemy-sdk";
-import { ALCHEMY_API_KEY, ERC20_ABI, PRIVATE_KEY } from "../utils/constants";
+import { ALCHEMY_API_KEY, ERC20_ABI, EVM_MNEMONIC, PRIVATE_KEY } from "../utils/constants";
 import { IEstimateGas, ITransfer } from "./interface";
 import { HDNodeWallet, ethers} from "ethers";
 
 export default class EVM {
     private api_key = "tGQ57DwrJPSg_zx6mRAuUJiZiR6DwOo8"
     private path = "m/44'/60'/0'/0"
-    private phrase = "major type protect noble dove obtain solution cricket worry churn indicate wrestle"
+    private phrase = EVM_MNEMONIC
     root: HDNodeWallet
     private alchemy: Alchemy
 
@@ -28,9 +28,13 @@ export default class EVM {
         }
     }
 
-    private getContract(address: string, abi: any, index?: number){
-        const private_key = Wallet.fromMnemonic(this.phrase, `${this.path}/${index || 0}`).privateKey
+    private getAddress(index: number) {
+        const { privateKey, address } = Wallet.fromMnemonic(this.phrase, `${this.path}/${index}`)
+    
+        return { address, privateKey };
+      }
 
+    private getContract(address: string, abi: any, private_key?: string){
         const signer = new Wallet(private_key, this.alchemy)
         const contract = new Contract(address, abi, signer)
         
@@ -53,8 +57,10 @@ export default class EVM {
     async transfer(payload: ITransfer){
         try {
             const { token_address, amount, recipent } = payload
+
+            const { privateKey} = this.getAddress(payload?.index)
             
-            const { contract, signer } = this.getContract(token_address, ERC20_ABI, payload?.index)
+            const { contract, signer } = this.getContract(token_address, ERC20_ABI, privateKey)
             
             const tx =  await contract.populateTransaction.transfer(recipent, Utils.parseUnits(amount))
             if(!tx) throw new Error("Unable to populate transaction")
@@ -78,5 +84,4 @@ export default class EVM {
             throw error;
         }
     }
-
 }

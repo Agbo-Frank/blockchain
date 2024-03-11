@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bitcore-lib": "^0.15.6",
     "@types/node": "20.8.2",
     "gts": "^5.2.0",
     "typescript": "~5.2.0"
@@ -27,8 +28,14 @@
     "@uniswap/v3-periphery": "^1.4.4",
     "@uniswap/v3-sdk": "^3.11.0",
     "alchemy-sdk": "^3.1.2",
+    "bignumber.js": "^9.1.2",
+    "bip32": "^4.0.0",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^6.1.5",
+    "bitcore-lib": "^10.0.28",
     "dotenv": "^16.4.5",
     "ethers": "^6.11.1",
-    "gts": "^5.2.0"
+    "gts": "^5.2.0",
+    "tiny-secp256k1": "^2.2.3"
   }
 }
