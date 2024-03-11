@@ -1,5 +1,5 @@
 import { Network } from "alchemy-sdk";
-import Token from "./token";
+import Token from "./evm";
 
 const address1 = "0x02EAc949Fad1b4d196601A6F4B8109f289581b3A";
 const pk2 = "767afe9de161331a63a5ff22a4040e8d3495db6dff228e9244ebd8a2ceaf063d"
@@ -21,12 +21,15 @@ const payload = {
 const token = new Token(Network.ETH_SEPOLIA)
 const _payload = payload[Network.ETH_SEPOLIA]
 // console.log(await token.getBalance(_payload.from, ["0x6D2B5c68F1506d4dCB49320D7D9Cc7e8375aC1d0"]))
-// const result = await token.transfer({
-//     token_address: "0x6D2B5c68F1506d4dCB49320D7D9Cc7e8375aC1d0",
-//     amount: "1",
-//     recipent: _payload.to
-// })
-const result = await token.getPoolAddress()
+
+const result = await token.transfer({
+    token_address: "0x6D2B5c68F1506d4dCB49320D7D9Cc7e8375aC1d0",
+    amount: "1",
+    index: 2,
+    recipent: "0x02EAc949Fad1b4d196601A6F4B8109f289581b3A"
+})
+// const result = await token.getBalance("0x17Ab0949bdEa6f05025aA5369Ab93dAb8Cf454bE", ["0x6D2B5c68F1506d4dCB49320D7D9Cc7e8375aC1d0"])
+// const result = token.root.deriveChild(2)
 console.log("result: ", result)
 // console.log(token.getChildAddress(0))
 })()
